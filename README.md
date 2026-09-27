@@ -1,7 +1,7 @@
 # EGFR Graph QSAR Reproducibility
 
-**Reproducibility repository for:**  
-**Classical Molecular Graph Descriptors versus Contemporary Representations for EGFR pIC50 Prediction under Scaffold and Chemical-Space Shift**
+**Reproducibility repository for**  
+**Representation Degeneracy and Generalization Limits of Classical Molecular Graph Descriptors in EGFR QSAR**
 
 [![License: MIT](https://img.shields.io/badge/code%20license-MIT-blue.svg)](LICENSE)
 [![Data: ChEMBL](https://img.shields.io/badge/data-ChEMBL-5b8c85.svg)](DATA_LICENSE_NOTICE.md)
@@ -9,13 +9,29 @@
 
 ## Why this study?
 
-The paper treats **19 classical mathematical molecular-graph invariants (Graph19)** as an intentionally compressed representation rather than claiming that they are an accuracy-optimized replacement for contemporary cheminformatics features. The central question is:
+This study treats **19 classical mathematical molecular-graph invariants (Graph19)** as an intentionally compressed representation rather than as an accuracy-optimized replacement for modern cheminformatics features. The central question is:
 
-> **What EGFR pIC50 predictive signal survives compression to only 19 classical graph invariants, and where does that compression fail?**
+> **What EGFR pIC50 predictive signal survives compression to 19 classical graph invariants, and where does that compression fail?**
 
-The same frozen 10,056-compound EGFR cohort is evaluated using Graph19, 196 RDKit2D descriptors and 2,048-bit ECFP4 fingerprints under matched Random Forest principles, random splits, Bemis-Murcko scaffold folds, chemical-space diagnostics and uncertainty analysis.
+The same frozen 10,056-compound EGFR cohort is evaluated with Graph19, 196 RDKit2D descriptors and 2,048-bit ECFP4 fingerprints under matched Random Forest principles, random splits, Bemis-Murcko scaffold folds, chemical-space diagnostics and uncertainty analysis.
 
-## Key findings
+```mermaid
+flowchart LR
+  A[17,705 source IC50 records] --> B[17,412 curated records]
+  B --> C[10,056 unique molecules]
+  C --> D[Graph19 - 19]
+  C --> E[RDKit2D - 196]
+  C --> F[ECFP4 - 2,048]
+  D --> G[Random + scaffold validation]
+  E --> G
+  F --> G
+  D --> H[Exact Graph19-vector degeneracy]
+  G --> I[Chemical-space + uncertainty diagnostics]
+  H --> J[Representation limits]
+  I --> J
+```
+
+## Key results
 
 | Result | Graph19 | RDKit2D | ECFP4 |
 |---|---:|---:|---:|
@@ -25,16 +41,18 @@ The same frozen 10,056-compound EGFR cohort is evaluated using Graph19, 196 RDKi
 | Random RMSE | 1.068 | 0.802 | **0.705** |
 | Scaffold RMSE | 1.197 | 0.933 | **0.837** |
 
-Matched ECFP4 gains over Graph19 were **+0.343 R2** (95% CI 0.309-0.377) under random splitting and **+0.404 R2** (0.310-0.498) under scaffold splitting; the direction was positive in every matched split/fold.
+Matched ECFP4 gains over Graph19 were **+0.343 R2** (95% CI 0.309-0.377) under random splitting and **+0.404 R2** (0.310-0.498) under scaffold splitting; the direction was positive in all five matched partitions.
 
-### Representation ambiguity is measurable
+### Exact representation degeneracy
 
 - 10,056 molecules collapse to **7,382 distinct Graph19 vectors**.
 - **1,507 exact Graph19 descriptor-vector collision groups** contain **4,181 molecules (41.6%)**.
 - **1,285 (85.3%)** collision groups contain more than one molecular formula.
-- 117 groups span more than **2 pIC50 units**.
+- **117 groups** span more than **2 pIC50 units**.
 - **108 molecular pairs** have identical Graph19 vectors, ECFP4 Tanimoto <0.5, and |delta pIC50| >2.
-- The representation ranking remains **ECFP4 > RDKit2D > Graph19** when RF feature sampling is changed from `sqrt(p)` to a common 50% feature fraction.
+- The representation ordering remains **ECFP4 > RDKit2D > Graph19** when Random Forest feature sampling is changed from `sqrt(p)` to a common 50% feature fraction.
+
+These collisions are **descriptor-vector collisions**, not claims of molecular-graph isomorphism. They make the cost of extreme topological compression chemically explicit: different structures can become indistinguishable to any deterministic learner receiving only the same Graph19 vector.
 
 ## Frozen data lineage
 
@@ -46,55 +64,54 @@ Matched ECFP4 gains over Graph19 were **+0.343 R2** (95% CI 0.309-0.377) under r
 10,056 unique compounds (InChIKey deduplication, median pIC50)
 ```
 
-Of the 17,412 curated activity labels, 17,156 use ChEMBL `pchembl_value`; 256 use the compatible unit-derived fallback. All 19 graph descriptors were independently regenerated and matched the archived matrix to within `5e-8`. The study recovered **3,579 unique Bemis-Murcko scaffolds**.
+Of the 17,412 curated labels, 17,156 use ChEML `pchembl_value`; 256 use a compatible unit-derived fallback. All 19 graph descriptors were independently regenerated and matched the archived matrix to within `5e-8`. The study recovered **3,579 unique Bemis-Murcko scaffolds**.
 
-See `DATA_LICENSE_NOTICE.md` for ChEMBL attribution/licensing and `INPUT_MANIFEST.json` for frozen input hashes.
+The original ChEMBL release identifier was not retained in the historical archive; this is disclosed rather than reconstructed by guesswork. The frozen raw file, exact curation logic and cryptographic hashes are the reproducibility anchors. See `DATA_LICENSE_NOTICE.md` and `INPUT_MANIFEST.json`.
 
-## Repository map
+## Reproducibility design
 
-```text
-.
-├── README.md
-├── LICENSE                         # MIT - original study code
-├── DATA_LICENSE_NOTICE.md          # ChEMBL-derived data terms
-├── CITATION.cff
-├── requirements.txt                # supported dependency ranges
-├── requirements-lock.txt           # exact definitive environment
-├── MASTER_RUN_PAPER003_V3.cmd      # one-click full Windows run
-├── SMOKE_TEST_PAPER003_V3.cmd
-├── config.json
-├── INPUT_MANIFEST.json
-├── data/README.md                  # frozen-data access + archive route
-├── scripts/                        # V3 assurance/benchmark pipeline
-├── v31/                            # representation-ambiguity + RF-sensitivity strengthening
-├── results_key/                    # principal V3 machine-readable outputs
-├── results_v31/                    # compact V3.1 machine-readable outputs
-├── figures/                        # selected publication figures used by the README
-├── docs/                           # design freeze, QA and review audit
-└── .github/workflows/qa.yml        # lightweight source/manifest QA
-```
+The definitive local workflow is CPU-only, Windows-friendly, deterministic and resumable. It includes:
 
-## Reproduce the definitive V3 benchmark on Windows
+1. frozen-input hash validation;
+2. exact data-lineage reconstruction;
+3. independent regeneration of all 19 graph descriptors;
+4. RDKit2D and ECFP4 generation;
+5. fixed random and Murcko-scaffold partitions;
+6. matched representation benchmarks;
+7. Y-randomization, descriptor ablation and permutation importance;
+8. Williams and nearest-training chemical-space diagnostics;
+9. split-conformal uncertainty analysis;
+10. V3.1 exact Graph19-vector degeneracy, paired effects and RF-sampling sensitivity.
 
-1. Clone or download this repository.
-2. Download/extract the frozen data payload from the Zenodo submission archive into the paths documented by `INPUT_MANIFEST.json`.
-3. Keep the frozen inputs unchanged.
-4. Double-click `MASTER_RUN_PAPER003_V3.cmd`.
-5. The script bootstraps a virtual environment, validates input hashes, executes the phased pipeline, and writes a return package under `results/`.
+The full frozen data/intermediate payload will be deposited with the immutable Zenodo submission release. The normal GitHub clone is intentionally kept lighter while retaining source code, manifests, compact result tables and publication-generation code.
 
-A reduced software-path check is available as `SMOKE_TEST_PAPER003_V3.cmd`. The smoke test verifies software plumbing only; its reduced results are **not** scientific results.
-
-## Reproduce the V3.1 strengthening analysis
+## V3.1 strengthening analysis
 
 `v31/v31_strengthening.py` implements:
 
-1. exact Graph19 descriptor-vector collision analysis;
-2. within-collision ECFP4/pIC50 discordance analysis and representative structures;
-3. paired representation effect sizes across the matched V3 splits/folds;
-4. RF feature-sampling sensitivity at a common 50% feature fraction;
-5. selected full-feature RF spot checks.
+- exact Graph19 descriptor-vector collision analysis;
+- ECFP4/pIC50 discordance inside collision groups;
+- representative chemically discordant molecular pairs;
+- paired representation effect sizes over matched splits/folds;
+- RF feature-sampling sensitivity at a common 50% feature fraction;
+- selected full-feature RF spot checks.
 
-The immutable Zenodo reproducibility archive retains the frozen V3 return archive consumed by the strengthening script so V3.1 can be independently audited without reconstructing an intermediate archive by hand.
+The V3.1 return package passed a manifest audit with **59/59 recorded outputs matching SHA-256 hashes**.
+
+## Result-to-source map
+
+| Manuscript result | Machine-readable source |
+|---|---|
+| Graph19/RDKit2D/ECFP4 benchmark | `results_key/representation_benchmark_summary.csv` |
+| Paired representation effects | `results_v31/paired_representation_effect_sizes.csv` |
+| Graph19 ambiguity summary | `results_v31/graph19_ambiguity_summary.json` |
+| Representative collision pairs | `results_v31/representative_collision_pairs.csv` |
+| RF sampling sensitivity | `results_v31/rf_sensitivity_summary.csv` |
+| Graph19 family ablation | `results_key/descriptor_family_ablation_summary.csv` |
+| Chemical-space shift | `results_key/chemical_space_similarity_bins.csv` |
+| Conformal coverage | `results_key/conformal_metrics.csv` |
+
+The complete pair-level collision tables and full intermediate arrays will be part of the Zenodo archive and machine-readable supplementary ZIP.
 
 ## Environment
 
@@ -108,30 +125,16 @@ Definitive V3 environment:
 - pandas 2.3.3
 - matplotlib 3.11.2
 
-Use `requirements-lock.txt` for the exact frozen package versions and `requirements.txt` for compatible ranges.
-
-## Result-to-source map
-
-| Manuscript result | Machine-readable source |
-|---|---|
-| Graph19/RDKit2D/ECFP4 random + scaffold benchmark | `results_key/representation_benchmark_metrics.csv` |
-| Benchmark summary | `results_key/representation_benchmark_summary.csv` |
-| Paired representation effects | `results_v31/paired_representation_effect_sizes.csv` |
-| Graph19 family ablation | `results_key/descriptor_family_ablation_summary.csv` |
-| Individual/grouped permutation importance | `results_key/interpretability_*` |
-| Chemical-space shift | `results_key/chemical_space_similarity_bins.csv`, `tanimoto_ad_metrics.csv` |
-| Conformal coverage | `results_key/conformal_metrics.csv` |
-| Chemically discordant collisions | `results_v31/chemically_discordant_collision_pairs.csv` |
-| RF feature-sampling sensitivity | `results_v31/rf_sensitivity_metrics.csv`, `rf_sensitivity_summary.csv` |
+The V3.1 strengthening run used Python 3.13.1 on Windows 11 with 16 logical CPUs and at most 10 parallel workers.
 
 ## Scientific scope and limitations
 
-This repository supports an **EGFR-specific representation study**, not a claim that Graph19 or ECFP4 universally dominates for all targets or learners. Graph19 intentionally omits atom labels, bond orders, 3D geometry, protein state and assay context. Descriptor-vector collisions therefore quantify ambiguity in this specific compact representation and do not imply that the underlying unlabeled graphs are non-isomorphic. Scaffold conformal coverage is reported as a distribution-shift stress test rather than a formal exchangeability-guaranteed coverage result.
+This is an **EGFR-specific representation study**, not a claim that Graph19 or ECFP4 universally dominates for all targets or learners. Graph19 intentionally omits atom labels, bond orders, 3D geometry, protein state and assay context. Exact descriptor-vector collisions quantify ambiguity in this specific encoding and do not imply that the underlying molecular graphs are isomorphic. Scaffold conformal coverage is reported as a distribution-shift stress test rather than a formal exchangeability-guaranteed coverage result.
 
 ## Release status
 
 **Current status: pre-submission freeze.**  
-The repository is being frozen for the `v1.0.0-submission` release. That release will be archived through Zenodo together with the complete frozen data/intermediate payload. The resulting Zenodo DOI will then be inserted into the manuscript, `CITATION.cff`, and this README before submission.
+After final author approval, the repository will be tagged `v1.0.0-submission` and archived with the complete frozen reproducibility payload through Zenodo. The resulting DOI will be inserted into the manuscript and `CITATION.cff` before journal submission.
 
 ## Authors
 
@@ -140,8 +143,4 @@ The repository is being frozen for the `v1.0.0-submission` release. That release
 
 ## License
 
-Original code in this repository is released under the **MIT License**. ChEMBL-derived data remain subject to the ChEMBL licensing terms described in `DATA_LICENSE_NOTICE.md`.
-
-## Full immutable archive
-
-The GitHub clone is intentionally lightweight. The submission-linked Zenodo archive contains the complete frozen ChEMBL-derived raw/intermediate/final data, the frozen V3 return archive, all publication figure formats, and the complete machine-readable supporting output set. This separation keeps normal cloning practical while preserving third-party reproducibility in the immutable archive.
+Original project code is released under the **MIT License**. ChEMBL-derived data remain subject to the ChEMBL terms documented in `DATA_LICENSE_NOTICE.md`.
