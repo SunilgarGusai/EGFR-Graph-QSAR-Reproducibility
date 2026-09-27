@@ -1,0 +1,25 @@
+name: lightweight-qa
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  source-and-manifest-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile Python sources
+        run: python -m compileall -q scripts v31
+      - name: Validate input manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('INPUT_MANIFEST.json')
+          json.loads(p.read_text(encoding='utf-8'))
+          print('validated', p)
+          PY
