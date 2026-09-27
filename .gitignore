@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local caches / checkpoints
+cache/
+logs/
+state/
+*.tmp
+*.bak
+
+# Large local execution artifacts
+*.joblib
+*.pkl
+*.pickle
+
+# LaTeX build products
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Keep release-ready PDFs/figures only when intentionally committed
