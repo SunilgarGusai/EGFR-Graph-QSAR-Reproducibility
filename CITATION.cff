@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the associated PAPER003 manuscript."
+title: "EGFR Graph QSAR Reproducibility"
+type: software
+authors:
+  - family-names: "Gusai"
+    given-names: "Sunilgar L."
+  - family-names: "Jadeja"
+    given-names: "Manoharsinh R."
+repository-code: "https://github.com/SunilgarGusai/EGFR-Graph-QSAR-Reproducibility"
+license: MIT
+version: "pre-submission"
+date-released: 2026-09-27
+keywords:
+  - EGFR
+  - QSAR
+  - graph descriptors
+  - molecular fingerprints
+  - scaffold split
+  - cheminformatics
