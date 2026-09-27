@@ -1,14 +1,15 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite the associated PAPER003 article and the archived repository release."
+message: "If you use this repository or its frozen research outputs, please cite the associated PAPER003 manuscript/article and this repository."
 title: "Representation Degeneracy and Generalization Limits of Classical Molecular Graph Descriptors in EGFR QSAR"
 type: software
 authors:
   - family-names: "Gusai"
     given-names: "Sunilgar L."
+    orcid: "https://orcid.org/0009-0004-0739-4812"
   - family-names: "Jadeja"
     given-names: "Manoharsinh R."
-version: "1.0.0-pre-submission"
-date-released: "2026-09-27"
+version: "1.0.0-submission"
+date-released: "2026-09-28"
 repository-code: "https://github.com/SunilgarGusai/EGFR-Graph-QSAR-Reproducibility"
 url: "https://github.com/SunilgarGusai/EGFR-Graph-QSAR-Reproducibility"
 license: MIT
