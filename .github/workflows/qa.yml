@@ -12,6 +12,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Reject internal project identifiers
+        shell: bash
+        run: |
+          if grep -Rni --exclude-dir=.git -E 'PAPER003|paper003|Paper003' .; then
+            echo 'Internal project identifier found in public repository.' >&2
+            exit 1
+          fi
       - name: Validate frozen public package
         run: python scripts/validate_frozen_package.py
       - name: Compile available Python sources
