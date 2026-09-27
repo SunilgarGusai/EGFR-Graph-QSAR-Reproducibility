@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this repository, please cite the associated PAPER003 article and the archived repository release."
-title: "EGFR Graph QSAR Reproducibility"
+title: "Representation Degeneracy and Generalization Limits of Classical Molecular Graph Descriptors in EGFR QSAR"
 type: software
 authors:
   - family-names: "Gusai"
@@ -17,6 +17,7 @@ keywords:
   - EGFR
   - pIC50
   - molecular graph descriptors
-  - scaffold split
   - representation degeneracy
+  - scaffold split
+  - chemical-space shift
   - ECFP4
