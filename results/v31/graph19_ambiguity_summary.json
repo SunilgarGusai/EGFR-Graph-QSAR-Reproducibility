@@ -1,0 +1,19 @@
+{
+  "n_molecules": 10056,
+  "n_unique_graph19_vectors": 7382,
+  "n_collision_groups": 1507,
+  "n_molecules_in_collision_groups": 4181,
+  "fraction_molecules_in_collision_groups": 0.4157716785998409,
+  "collision_groups_with_distinct_molecular_formula": 1285,
+  "fraction_collision_groups_with_distinct_molecular_formula": 0.8526874585268746,
+  "groups_pic50_range_gt_1": 389,
+  "groups_pic50_range_gt_2": 117,
+  "groups_pic50_range_gt_3": 33,
+  "molecules_in_groups_pic50_range_gt_2": 588,
+  "pairs_tanimoto_lt_0_5_and_delta_pic50_gt_2": 108,
+  "exact_collision_dataset_rmse_floor": 0.33190226804943884,
+  "exact_collision_dataset_mae_floor": 0.13767576413524266,
+  "exact_collision_in_sample_r2_ceiling": 0.9407120931054747,
+  "collided_subset_rmse_floor": 0.5147338967016777,
+  "collided_subset_mae_floor": 0.3311330983362831
+}
