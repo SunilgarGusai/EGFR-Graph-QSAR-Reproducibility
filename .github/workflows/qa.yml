@@ -15,10 +15,23 @@ jobs:
       - name: Reject internal project identifiers
         shell: bash
         run: |
-          if grep -Rni --exclude-dir=.git -E 'PAPER003|paper003|Paper003' .; then
-            echo 'Internal project identifier found in public repository.' >&2
-            exit 1
-          fi
+          python - <<'PY'
+          from pathlib import Path
+          forbidden = ''.join(['PAPER', '003']).lower()
+          hits = []
+          for path in Path('.').rglob('*'):
+              if not path.is_file() or '.git' in path.parts or path.as_posix() == '.github/workflows/qa.yml':
+                  continue
+              try:
+                  text = path.read_text(encoding='utf-8').lower()
+              except (UnicodeDecodeError, OSError):
+                  continue
+              if forbidden in text or forbidden in path.as_posix().lower():
+                  hits.append(str(path))
+          if hits:
+              raise SystemExit('Internal project identifier found in public repository: ' + ', '.join(hits))
+          print('No internal project identifiers found.')
+          PY
       - name: Validate frozen public package
         run: python scripts/validate_frozen_package.py
       - name: Compile available Python sources
