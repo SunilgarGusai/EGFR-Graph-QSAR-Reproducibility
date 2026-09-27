@@ -12,32 +12,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate repository structure and JSON artifacts
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          required = [
-              Path('README.md'),
-              Path('CITATION.cff'),
-              Path('INPUT_MANIFEST.json'),
-              Path('docs/FROZEN_RESULTS.md'),
-              Path('docs/EXPERIMENT_PROTOCOL.md'),
-              Path('docs/DATA_PROVENANCE.md'),
-              Path('results/frozen/representation_benchmark_summary.csv'),
-              Path('results/v31/graph19_ambiguity_summary.json'),
-              Path('v31/v31_strengthening.py'),
-          ]
-          missing = [str(p) for p in required if not p.exists()]
-          if missing:
-              raise SystemExit('Missing required repository files: ' + ', '.join(missing))
-
-          json.loads(Path('INPUT_MANIFEST.json').read_text(encoding='utf-8'))
-          json.loads(Path('results/v31/graph19_ambiguity_summary.json').read_text(encoding='utf-8'))
-          print('Repository structure and JSON artifacts validated.')
-          PY
+      - name: Validate frozen public package
+        run: python scripts/validate_frozen_package.py
       - name: Compile available Python sources
         run: |
-          python -m compileall -q v31
-          if [ -d scripts ]; then python -m compileall -q scripts; fi
+          python -m compileall -q v31 scripts
