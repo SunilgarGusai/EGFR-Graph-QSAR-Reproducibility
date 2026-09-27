@@ -1,0 +1,14 @@
+name: paper003-egfr-qsar
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - rdkit
+  - matplotlib
+  - joblib
+  - psutil
+  - tqdm
