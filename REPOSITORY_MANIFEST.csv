@@ -1,0 +1,44 @@
+category,path,role
+metadata,README.md,Repository landing page and scientific summary
+metadata,CITATION.cff,Citation metadata
+metadata,LICENSE,MIT license for original project code
+metadata,DATA_LICENSE_NOTICE.md,Third-party ChEMBL data licensing notice
+metadata,INPUT_MANIFEST.json,SHA-256 manifest for frozen historical inputs
+metadata,environment.yml,Conda environment specification
+metadata,requirements.txt,Pip dependency specification
+metadata,requirements-lock.txt,Frozen dependency record
+provenance,data/README.md,Data-access and redistribution policy
+provenance,data/sources.md,Primary data source and frozen lineage
+provenance,data/checksums.csv,Frozen source file checksums
+documentation,docs/FROZEN_RESULTS.md,Submission-aligned frozen numerical results
+documentation,docs/EXPERIMENT_PROTOCOL.md,Frozen scientific protocol
+documentation,docs/DATA_PROVENANCE.md,Data provenance narrative
+documentation,docs/REPRODUCIBILITY.md,Reproducibility scope and boundaries
+documentation,docs/LICENSE_AND_USAGE.md,Code and data usage boundaries
+documentation,docs/V31_FIVE_CYCLE_REVIEW.md,Pre-submission five-cycle review record
+visual,docs/assets/repository-banner.svg,Repository banner
+visual,docs/assets/egfr-workflow.svg,README workflow visual
+results,results/frozen/representation_benchmark_summary.csv,Graph19 vs RDKit2D vs ECFP4 benchmark
+results,results/frozen/descriptor_family_ablation_summary.csv,Graph19 family ablation
+results,results/frozen/chemical_space_similarity_bins.csv,Error by nearest-training similarity
+results,results/frozen/conformal_metrics.csv,Random/scaffold conformal metrics
+results,results/frozen/interpretability_descriptor_importance.csv,Held-out descriptor permutation importance
+results,results/frozen/interpretability_grouped_family_importance.csv,Grouped family permutation importance
+results,results/frozen/representation_complexity_performance.csv,Dimension/timing/performance summary
+results,results/v31/graph19_ambiguity_summary.json,Exact Graph19 collision summary
+results,results/v31/paired_representation_effect_sizes.csv,Matched representation effect sizes
+results,results/v31/representative_collision_pairs.csv,Representative discordant collision pairs
+results,results/v31/rf_sensitivity_summary.csv,RF feature-sampling sensitivity
+pipeline,scripts/common.py,Shared pipeline utilities
+pipeline,scripts/run_pipeline.py,Resumable pipeline orchestrator
+pipeline,scripts/phase01_audit.py,Historical data audit and reconstruction
+pipeline,scripts/phase02_descriptors.py,Graph19 regeneration and assurance
+pipeline,scripts/phase03_representations.py,RDKit2D ECFP4 and split generation
+pipeline,scripts/phase04_models.py,Model assurance and representation benchmark
+pipeline,scripts/phase05_generalization_ad.py,Scaffold and applicability-domain analysis
+pipeline,scripts/phase06_strengthening.py,Ablation interpretability and conformal analysis
+pipeline,scripts/phase07_outputs_qa.py,Final figures tables and QA package
+pipeline,scripts/validate_frozen_package.py,Lightweight public repository validator
+pipeline,scripts/make_publication_figures_v31.py,Regenerate selected figures from frozen public outputs
+pipeline,v31/v31_strengthening.py,Representation degeneracy paired effects and RF sensitivity
+ci,.github/workflows/qa.yml,GitHub Actions repository-integrity check
