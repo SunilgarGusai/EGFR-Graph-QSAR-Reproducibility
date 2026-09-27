@@ -1,4 +1,4 @@
-"""Regenerate selected PAPER003 V3.1 publication figures from frozen public outputs.
+"""Regenerate selected EGFR Graph QSAR V3.1 publication figures from frozen public outputs.
 
 Run from repository root:
     python scripts/make_publication_figures_v31.py

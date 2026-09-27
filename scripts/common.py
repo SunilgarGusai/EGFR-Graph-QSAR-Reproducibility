@@ -46,7 +46,7 @@ def json_dump(obj, path: Path | str):
 
 def setup_logging(smoke=False):
     log = LOGS / ("pipeline_smoke.log" if smoke else "pipeline.log")
-    logger = logging.getLogger("paper003")
+    logger = logging.getLogger("egfr_graph_qsar")
     logger.setLevel(logging.INFO)
     logger.handlers.clear()
     fmt = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")

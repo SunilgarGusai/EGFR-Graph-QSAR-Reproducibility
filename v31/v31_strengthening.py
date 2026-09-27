@@ -42,14 +42,14 @@ def jobs() -> int:
 
 def locate_v3_return() -> Path:
     candidates = [
-        ROOT / "inputs" / "PAPER003_V3_RETURN_PACKAGE.zip",
-        V31 / "PAPER003_V3_RETURN_PACKAGE.zip",
+        ROOT / "inputs" / "EGFR_QSAR_REPRODUCIBILITY_RETURN.zip",
+        V31 / "EGFR_QSAR_REPRODUCIBILITY_RETURN.zip",
     ]
     for path in candidates:
         if path.exists():
             return path
     raise FileNotFoundError(
-        "Place PAPER003_V3_RETURN_PACKAGE.zip in inputs/ or v31/. "
+        "Place EGFR_QSAR_REPRODUCIBILITY_RETURN.zip in inputs/ or v31/. "
         "The immutable submission archive contains this frozen intermediate."
     )
 
@@ -285,7 +285,7 @@ def main():
     paired_effects(benchmark)
     rf_sensitivity(graph, rdkit2d, ecfp, scaffolds)
     manifest()
-    (OUT / "RUN_COMPLETE.txt").write_text("PAPER003 V3.1 repository run completed successfully.\n")
+    (OUT / "RUN_COMPLETE.txt").write_text("EGFR Graph QSAR V3.1 repository run completed successfully.\n")
     print(f"Complete. Outputs: {OUT}")
 
 

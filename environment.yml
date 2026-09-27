@@ -1,4 +1,4 @@
-name: paper003-egfr-qsar
+name: egfr-graph-qsar
 channels:
   - conda-forge
 dependencies:

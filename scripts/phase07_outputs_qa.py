@@ -69,12 +69,12 @@ def run(logger,smoke=False):
     env=environment_report(); envpath=outdir/"environment.json"; json_dump(env,envpath); outputs.append(envpath); freeze=outdir/"environment_freeze.txt"; pip_freeze(freeze); outputs.append(freeze)
     manifest=[]
     for p in sorted(base.rglob("*")):
-        if p.is_file() and p.name!="PAPER003_V3_RETURN_PACKAGE.zip": manifest.append({"path":str(p.relative_to(ROOT)),"sha256":sha256_file(p),"bytes":p.stat().st_size})
+        if p.is_file() and p.name!="EGFR_QSAR_REPRODUCIBILITY_RETURN.zip": manifest.append({"path":str(p.relative_to(ROOT)),"sha256":sha256_file(p),"bytes":p.stat().st_size})
     manpath=outdir/"results_manifest.json"; json_dump({"generated_epoch":time.time(),"environment":env,"files":manifest},manpath); outputs.append(manpath)
     qa={"input_manifest_all_ok":all(v["ok"] for v in input_manifest_check().values()),"descriptor_assurance":json.loads((base/"02_descriptors"/"descriptor_comparison_summary.json").read_text()),"scaffold_assurance":ss,"williams":ws,"manuscript_rewrite_status":"NOT STARTED by design; freeze results first, then rewrite V3.","github_status":"Repository-ready outputs produced locally; public repository creation/release is a later manuscript-finalization step."}
     qapath=outdir/"QA_SUMMARY.json"; json_dump(qa,qapath); outputs.append(qapath)
 
-    ret=outdir/"PAPER003_V3_RETURN_PACKAGE.zip"
+    ret=outdir/"EGFR_QSAR_REPRODUCIBILITY_RETURN.zip"
     with zipfile.ZipFile(ret,"w",zipfile.ZIP_DEFLATED,compresslevel=6) as z:
         for folder in [base,LOGS,STATE]:
             if folder.exists():
@@ -83,6 +83,6 @@ def run(logger,smoke=False):
         for p in [ROOT/"config.json",ROOT/"INPUT_MANIFEST.json",ROOT/"docs"/"V3_SCIENTIFIC_DESIGN_FREEZE.md",ROOT/"docs"/"NOVELTY_AND_JOURNAL_AUDIT.md",ROOT/"docs"/"V3_GAP_MATRIX.csv"]:
             if p.exists(): z.write(p,p.relative_to(ROOT))
     outputs.append(ret)
-    done=outdir/"RUN_COMPLETE.txt"; done.write_text("PAPER003 V3 computational assurance/strengthening run completed. Upload PAPER003_V3_RETURN_PACKAGE.zip back to ChatGPT for result audit and manuscript V3 writing.\n",encoding="utf-8"); outputs.append(done)
+    done=outdir/"RUN_COMPLETE.txt"; done.write_text("EGFR Graph QSAR V3 computational assurance/strengthening run completed. Upload EGFR_QSAR_REPRODUCIBILITY_RETURN.zip back to ChatGPT for result audit and manuscript V3 writing.\n",encoding="utf-8"); outputs.append(done)
     logger.info("Final QA complete. Return package: %s",ret)
     return outputs,{"return_package":str(ret),"qa":qa}

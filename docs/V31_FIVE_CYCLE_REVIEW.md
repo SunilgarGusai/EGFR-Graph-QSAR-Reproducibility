@@ -1,4 +1,4 @@
-# PAPER003 V3.1 - Five-cycle pre-submission review
+# EGFR Graph QSAR V3.1 - Five-cycle pre-submission review
 
 Target: Journal of Cheminformatics  
 Review date: 2026-09-27

@@ -43,7 +43,7 @@ The study is deliberately not framed as “Graph19 versus everything else for ma
 ## Method at a glance
 
 <p align="center">
-  <img src="docs/assets/egfr-workflow.svg" alt="Frozen PAPER003 workflow from data curation through representation benchmarking, degeneracy analysis, reliability diagnostics and robustness testing" width="100%" />
+  <img src="docs/assets/egfr-workflow.svg" alt="Frozen EGFR QSAR workflow from data curation through representation benchmarking, degeneracy analysis, reliability diagnostics and robustness testing" width="100%" />
 </p>
 
 The same frozen **10,056-compound EGFR cohort** is represented as Graph19, 196 retained RDKit2D descriptors, and 2,048-bit ECFP4 fingerprints. Representations are compared under matched Random Forest principles using five random splits and five Bemis-Murcko scaffold folds. Reliability is examined with nearest-training chemical similarity, Williams leverage, and split-conformal prediction intervals.
@@ -144,7 +144,7 @@ It contains or maps to:
 
 ```bash
 conda env create -f environment.yml
-conda activate paper003-egfr-qsar
+conda activate egfr-graph-qsar
 ```
 
 or install the pip dependencies from [`requirements.txt`](requirements.txt).

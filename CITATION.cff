@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this repository or its frozen research outputs, please cite the associated PAPER003 manuscript/article and this repository."
+message: "If you use this repository or its frozen research outputs, please cite the associated manuscript/article and this repository."
 title: "Representation Degeneracy and Generalization Limits of Classical Molecular Graph Descriptors in EGFR QSAR"
 type: software
 authors:

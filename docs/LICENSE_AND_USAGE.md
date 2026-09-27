@@ -2,7 +2,7 @@
 
 ## Original code
 
-Original PAPER003 project code in this repository is released under the MIT License (`LICENSE`).
+Original project code in this repository is released under the MIT License (`LICENSE`).
 
 ## ChEMBL-derived data
 

@@ -1,6 +1,6 @@
 # Frozen results
 
-This page records the submission-aligned numerical evidence for PAPER003. Values below are frozen from the audited V3/V3.1 result packages; they should not be silently replaced by later exploratory reruns.
+This page records the submission-aligned numerical evidence for this study. Values below are frozen from the audited V3/V3.1 result packages; they should not be silently replaced by later exploratory reruns.
 
 ## Representation benchmark
 

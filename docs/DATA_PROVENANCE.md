@@ -33,6 +33,6 @@ All 19 Graph19 descriptors were independently regenerated from the frozen struct
 
 ## Historical release limitation
 
-The original ChEMBL release/version identifier was not preserved in the historical PAPER003 archive. This repository does not invent one. Instead it exposes the frozen-file checksums, target identifier, curation rules, counts, and source-field structure needed to identify exactly what was analyzed.
+The original ChEMBL release/version identifier was not preserved in the historical study archive. This repository does not invent one. Instead it exposes the frozen-file checksums, target identifier, curation rules, counts, and source-field structure needed to identify exactly what was analyzed.
 
 See `INPUT_MANIFEST.json` and `DATA_LICENSE_NOTICE.md` for file-level and licensing notes.

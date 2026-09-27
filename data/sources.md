@@ -2,9 +2,9 @@
 
 ## Primary source
 
-The frozen PAPER003 cohort is derived from **ChEMBL** activity records for human EGFR (`CHEMBL203`) using IC50 activity records from binding assays (`assay_type = B`).
+The frozen EGFR Graph QSAR cohort is derived from **ChEMBL** activity records for human EGFR (`CHEMBL203`) using IC50 activity records from binding assays (`assay_type = B`).
 
-The historical source snapshot was archived locally during the original PAPER003 work. The exact ChEMBL release identifier was not retained in that archive, so this repository does **not** infer or invent a version number. Reproducibility is anchored to the frozen-file checksums, source target identifier, curation rules, and row-count audit.
+The historical source snapshot was archived locally during the original EGFR Graph QSAR work. The exact ChEMBL release identifier was not retained in that archive, so this repository does **not** infer or invent a version number. Reproducibility is anchored to the frozen-file checksums, source target identifier, curation rules, and row-count audit.
 
 ## Frozen lineage
 

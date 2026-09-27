@@ -1,5 +1,5 @@
 {
-  "project_id": "PAPER003",
+  "project_id": "EGFR Graph QSAR",
   "build": "V3-assurance-strengthening-2026-09-27",
   "primary_seed": 42,
   "random_seeds": [42, 101, 202, 303, 404],

@@ -29,19 +29,19 @@ def preflight(logger,smoke=False):
     if not all(v["ok"] for v in checks.values()): raise RuntimeError("Input checksum audit failed. V2 archive has changed or is incomplete.")
     env=environment_report(); disk=shutil.disk_usage(ROOT)
     env["disk_free_gb"]=disk.free/(1024**3); env["package_signature"]=package_signature(); env["smoke_test"]=smoke
-    if disk.free < 5*(1024**3): raise RuntimeError("Less than 5 GB free disk space. Free space before running PAPER003 V3.")
+    if disk.free < 5*(1024**3): raise RuntimeError("Less than 5 GB free disk space. Free space before running EGFR Graph QSAR V3.")
     p=base/"preflight.json"; json_dump({"environment":env,"inputs":checks},p)
     f=base/"pip_freeze.txt"; pip_freeze(f)
     logger.info("Preflight OK: CPUs=%s, free disk=%.1f GB",env.get("cpu_count"),env["disk_free_gb"])
     return [p,f],env
 
 def main():
-    ap=argparse.ArgumentParser(description="PAPER003 V3 assurance + strengthening pipeline")
+    ap=argparse.ArgumentParser(description="EGFR Graph QSAR V3 assurance + strengthening pipeline")
     ap.add_argument("--smoke-test",action="store_true",help="Run reduced non-scientific QA mode; outputs are isolated under results/smoke.")
     ap.add_argument("--force-phase",default=None,help="Force one named phase to rerun by deleting its completion marker.")
     args=ap.parse_args(); smoke=args.smoke_test
     logger=setup_logging(smoke)
-    logger.info("PAPER003 V3 pipeline starting | smoke=%s | root=%s",smoke,ROOT)
+    logger.info("EGFR Graph QSAR V3 pipeline starting | smoke=%s | root=%s",smoke,ROOT)
     logger.info("Design: preserve V2 provenance; no manuscript rewrite is performed by this execution package.")
     if args.force_phase:
         from common import phase_state_path
@@ -56,8 +56,8 @@ def main():
             else: outputs,meta=func(logger,smoke)
             mark_phase_done(name,outputs,smoke,meta)
             logger.info("DONE %s",name)
-        logger.info("PAPER003 V3 PIPELINE COMPLETED SUCCESSFULLY")
-        final=RESULTS/("smoke" if smoke else "full")/"07_final"/"PAPER003_V3_RETURN_PACKAGE.zip"
+        logger.info("EGFR Graph QSAR V3 PIPELINE COMPLETED SUCCESSFULLY")
+        final=RESULTS/("smoke" if smoke else "full")/"07_final"/"EGFR_QSAR_REPRODUCIBILITY_RETURN.zip"
         if final.exists(): logger.info("UPLOAD BACK TO CHATGPT: %s",final)
     except KeyboardInterrupt:
         logger.warning("Interrupted safely. Completed phase/chunk/experiment checkpoints are preserved; rerun the CMD to resume.")
