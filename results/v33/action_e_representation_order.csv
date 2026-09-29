@@ -1,0 +1,3 @@
+split_type,representation_order_by_mean_r2,r2_values
+random,ECFP4_2048 > RDKit2D > Graph19,ECFP4_2048=0.728741; RDKit2D=0.692289; Graph19=0.366185
+scaffold,ECFP4_2048 > RDKit2D > Graph19,ECFP4_2048=0.602174; RDKit2D=0.555502; Graph19=0.162881
