@@ -1,0 +1,16 @@
+{
+  "full_vector_collision_groups": 307,
+  "groups_pic50_range_gt_1": 56,
+  "groups_pic50_range_gt_2": 20,
+  "groups_pic50_range_gt_3": 0,
+  "groups_with_constitution_diversity": 98,
+  "groups_with_different_formulas": 61,
+  "groups_with_stereo_or_identity_diversity": 307,
+  "max_pic50_range": 3.0,
+  "molecules_in_full_vector_collision_groups": 702,
+  "n_molecules": 10056,
+  "note": "This is different from the existing V3 within-molecule Morgan hash-folding collision audit.",
+  "percent_molecules_in_full_vector_collision_groups": 6.98090692124105,
+  "representation": "Morgan radius=2, 2048-bit binary, chirality disabled; exact full 2048-bit vector equality",
+  "unique_ecfp4_vectors": 9661
+}
