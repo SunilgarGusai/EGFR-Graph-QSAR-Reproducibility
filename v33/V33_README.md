@@ -1,0 +1,1 @@
+V3.3 public reproducibility materials are stored in this directory. The full audited payload is available as `EGFR_QSAR_V33_PUBLIC_PAYLOAD.zip`; the extracted V3.3 strengthening source, configuration, environment lock and frozen-result summaries are also published in repository directories for direct inspection and reuse.
