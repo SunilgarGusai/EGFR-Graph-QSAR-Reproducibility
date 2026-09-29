@@ -1,20 +1,62 @@
 {
+  "title": "Mechanisms of Representation Degeneracy and Generalization Limits of Classical Molecular Graph Descriptors in EGFR QSAR",
   "cohort_n": 10056,
-  "graph19_8dp": {"unique_vectors": 7382, "collision_groups": 1507, "collision_molecules": 4181, "cohort_fraction_percent": 41.57716785998409},
+  "graph19_8dp": {
+    "unique_vectors": 7382,
+    "collision_groups": 1507,
+    "collision_molecules": 4181,
+    "percent": 41.577168
+  },
   "mechanisms": {
-    "atom_element_label_loss": {"groups": 1278, "molecules": 3691},
-    "bond_order_aromaticity_loss": {"groups": 104, "molecules": 222},
-    "stereo_or_full_identity_loss": {"groups": 125, "molecules": 268},
-    "different_unlabeled_topology": {"groups": 0, "molecules": 0}
+    "atom_element_label_loss": {
+      "groups": 1278,
+      "molecules": 3691,
+      "gt2": 108,
+      "gt3": 33,
+      "max_range": 5.171849
+    },
+    "bond_order_aromaticity_loss": {
+      "groups": 104,
+      "molecules": 222,
+      "gt2": 4,
+      "gt3": 0,
+      "max_range": 2.93
+    },
+    "stereo_or_other_full_identity_loss": {
+      "groups": 125,
+      "molecules": 268,
+      "gt2": 5,
+      "gt3": 0,
+      "max_range": 3.0
+    },
+    "different_unlabeled_topology": {
+      "groups": 0,
+      "molecules": 0
+    }
   },
-  "exact_binary64": {"unique_vectors": 7745, "collision_groups": 1408, "collision_molecules": 3719, "cohort_fraction_percent": 36.98289578361178},
-  "ecfp4_full_vector": {"unique_vectors": 9661, "collision_groups": 307, "collision_molecules": 702, "cohort_fraction_percent": 6.98090692124105},
-  "max_graph19_pic50_range": 5.17184875,
-  "max_ecfp4_pic50_range": 3.0,
-  "qualitative_representation_order": "ECFP4 > RDKit2D > Graph19",
-  "extra_trees": {
-    "random_r2": {"Graph19": 0.366, "RDKit2D": 0.692, "ECFP4": 0.729},
-    "scaffold_r2": {"Graph19": 0.163, "RDKit2D": 0.556, "ECFP4": 0.602}
+  "binary64_exact": {
+    "unique_vectors": 7745,
+    "collision_groups": 1408,
+    "collision_molecules": 3719,
+    "percent": 36.982896
   },
-  "note": "Frozen V3.3 scientific summary. Detailed machine-readable outputs are stored alongside this file."
+  "ecfp4_full_vector": {
+    "unique_vectors": 9661,
+    "collision_groups": 307,
+    "collision_molecules": 702,
+    "percent": 6.980907,
+    "max_pic50_range": 3.0
+  },
+  "extratrees_r2": {
+    "random": {
+      "Graph19": 0.366185,
+      "RDKit2D": 0.692289,
+      "ECFP4": 0.728741
+    },
+    "scaffold": {
+      "Graph19": 0.162881,
+      "RDKit2D": 0.555502,
+      "ECFP4": 0.602174
+    }
+  }
 }
