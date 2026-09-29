@@ -1,13 +1,3 @@
-# Data provenance and frozen-input policy
+# Public frozen data payload
 
-The definitive study uses a frozen ChEMBL-derived EGFR cohort.
-
-For the public submission repository, the data directory documents provenance, checksums and source terms rather than assuming that the software license governs third-party molecular data.
-
-- `sources.md` â€” source target, endpoint and frozen lineage
-- `checksums.csv` â€” SHA-256 hashes of the archived EGFR Graph QSAR source/intermediate files
-- `../INPUT_MANIFEST.json` â€” machine-readable input manifest
-- `../DATA_LICENSE_NOTICE.md` â€” ChEMBL attribution and data-usage notice
-- `../docs/DATA_PROVENANCE.md` â€” complete provenance narrative
-
-The full frozen CSV payload is retained by the authors and can be made public with the source notice if that redistribution route is chosen for the journal submission. The repository does not infer a missing historical ChEMBL release identifier.
+The definitive study uses a frozen ChEMBL-derived human EGFR ½¡½ÉĞ¸Q¡”ÁÕ‰±¥ŒÉ•Á½Í¥Ñ½ÉäÁÉ½Ù¥‘•ÌÑ¡”€¨©™¥¹…°µ½‘•±•½¡½ÉĞ¨¨…Ì•™É}ÅÍÁÉ}™¥¹…±}ØÌÌ¹é¥Á€°½¹Ñ…¥¹¥¹œ•™É}ÅÍÁÉ}™¥¹…°¹ÍÙ€•á…Ñ±ä…ÌÕÍ•‰äÑ¡”É•ÁÉ½‘Õ¥‰¥±¥Ñäİ½É­™±½Ü¸()Q¡”Í½ÕÉ”±¥¹•…”¥Ìè()€ÄÜ°ÜÀÔ…É¡¥Ù•H%ÔÀÉ•½É‘Ì€´ø€ÄÜ°ĞÄÈÕÉ…Ñ•…Ñ¥Ù¥ÑäÉ½İÌ€´ø€ÄÀ°ÀÔØÕ¹¥ÅÕ”½µÁ½Õ¹‘Í€()Q¡”™¥¹…°½¡½ÉĞ¡•­ÍÕ´‰•™½É”½µÁÉ•ÍÍ¥½¸¥Ìè((´•™É}ÅÍÁÉ}™¥¹…°¹ÍÙ€èÉ‰Í••ŒĞÄİ‰”å‰„Õ‘•‰…ŒĞÌÕŒàØÌå‘ÌÔÈØÄÀĞÉ•˜ÜÀÌĞÜÔİ…ŒÄäÁˆÜØĞÈÍ™€()Q¡”i%@…É¡¥Ù”¡•­ÍÕ´¥ÌÉ•½É‘•¥¸¡•­ÍÕµÌ¹ÍÙ€¸()Q¡”¡¥ÍÑ½É¥…°¡5	0É•±•…Í”¥‘•¹Ñ¥™¥•Èİ…Ì¹½ĞÉ•Ñ…¥¹•¥¸Ñ¡”½É¥¥¹…°…É¡¥Ù”…¹¥Ì¹½ĞÕ•ÍÍ•¸¡5	0µ‘•É¥Ù•‘…Ñ„É•µ…¥¸ÍÕ‰©•ĞÑ¼Ñ¡•¥ÈÍ½ÕÉ”Ñ•ÉµÌ…¹…ÑÑÉ¥‰ÕÑ¥½¸É•ÅÕ¥É•µ•¹ÑÌìÑ¡”É•Á½Í¥Ñ½Éä5%P±¥•¹Í”…ÁÁ±¥•Ì½¹±äÑ¼½É¥¥¹…°ÁÉ½©•Ğ½‘”¸()É…Á Ää°I-¥ĞÉ…¹@ĞÉ•ÁÉ•Í•¹Ñ…Ñ¥½¹Ì…¸‰”É••¹•É…Ñ•™É½´Ñ¡”™É½é•¸½¡½ÉĞÕÍ¥¹œÑ¡”É•Á½Í¥Ñ½Éä½‘”…¹Á¥¹¹••¹Ù¥É½¹µ•¹Ğ¸Y…±¥‘…Ñ¥½¸Í••‘Ì…¹Í…™™½±ÁÉ½•‘ÕÉ•Ì…É”™¥á•¥¸Ñ¡”½‘”½½¹™¥ÕÉ…Ñ¥½¸…¹‘½Õµ•¹Ñ•¥¸‘½Ì½aAI%59Q}AI=Q==0¹µ‘€¸

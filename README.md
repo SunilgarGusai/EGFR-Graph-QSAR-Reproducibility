@@ -6,221 +6,177 @@
 
 <p align="center">
   <strong>Reproducibility repository for</strong><br/>
-  <strong>Representation Degeneracy and Generalization Limits of Classical Molecular Graph Descriptors in EGFR QSAR</strong>
+  <strong>Mechanisms of Representation Degeneracy and Generalization Limits of Classical Molecular Graph Descriptors in EGFR QSAR</strong>
 </p>
 
 <p align="center">
-  <a href="docs/FROZEN_RESULTS.md"><img src="https://img.shields.io/badge/reproducibility-frozen%20results-2ea44f.svg" alt="Frozen results"/></a>
+  <a href="docs/FROZEN_RESULTS.md"><img src="https://img.shields.io/badge/reproducibility-V3.3%20frozen-2ea44f.svg" alt="V3.3 frozen results"/></a>
   <a href="environment.yml"><img src="https://img.shields.io/badge/Python-3.11-3776AB.svg?logo=python&logoColor=white" alt="Python 3.11"/></a>
   <a href="docs/DATA_PROVENANCE.md"><img src="https://img.shields.io/badge/data-ChEMBL%20provenance-5b8c85.svg" alt="Data provenance"/></a>
   <a href="CITATION.cff"><img src="https://img.shields.io/badge/citation-CITATION.cff-blue.svg" alt="Citation metadata"/></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/code%20license-MIT-lightgrey.svg" alt="MIT license"/></a>
-  <img src="https://img.shields.io/badge/status-manuscript%20submission-orange.svg" alt="Submission status"/>
 </p>
-
-<p align="center">
-  <a href="#why-this-study">Why this study?</a> •
-  <a href="#method-at-a-glance">Method</a> •
-  <a href="#key-results">Key results</a> •
-  <a href="#representation-degeneracy">Degeneracy</a> •
-  <a href="#reproducibility">Reproducibility</a> •
-  <a href="#result-to-source-map">Result map</a> •
-  <a href="#citation">Citation</a>
-</p>
-
----
 
 ## Why this study?
 
-Classical molecular graph invariants are compact, mathematically interpretable summaries of molecular topology. Their compactness is attractive, but extreme compression can also erase chemically important distinctions.
+Classical graph invariants provide an unusually compact and mathematically interpretable encoding of molecular topology. Their compression is useful, but it can also erase chemical distinctions before a predictive model ever sees them.
 
-This study treats **19 classical graph invariants (Graph19)** as an intentionally compressed representation and asks how much EGFR pIC50 predictive signal remains accessible compared with contemporary molecular descriptors and fingerprints.
+This study asks two linked questions on a frozen **10,056-compound human EGFR pIC50 cohort**:
 
-> **Central question:** What EGFR pIC50 predictive signal survives compression to 19 classical graph invariants, and where does that compression fail under scaffold and chemical-space shift?
+1. how much predictive signal remains accessible after compressing each molecule to **19 classical graph invariants (Graph19)**; and
+2. **which molecular information is lost, at which abstraction layer, and how that loss relates to generalization and reliability**.
 
-The study is deliberately not framed as “Graph19 versus everything else for maximum accuracy.” It quantifies a **compactness–accuracy–generalization trade-off** and then diagnoses one concrete source of information loss: exact descriptor-vector degeneracy.
+The study is deliberately not framed as a contest to make Graph19 outperform contemporary fingerprints. Graph19 is treated as an interpretable compression whose limitations can be diagnosed explicitly.
 
-## Method at a glance
-
-<p align="center">
-  <img src="docs/assets/egfr-workflow.svg" alt="Frozen EGFR QSAR workflow from data curation through representation benchmarking, degeneracy analysis, reliability diagnostics and robustness testing" width="100%" />
-</p>
-
-The same frozen **10,056-compound EGFR cohort** is represented as Graph19, 196 retained RDKit2D descriptors, and 2,048-bit ECFP4 fingerprints. Representations are compared under matched Random Forest principles using five random splits and five Bemis-Murcko scaffold folds. Reliability is examined with nearest-training chemical similarity, Williams leverage, and split-conformal prediction intervals.
-
-See [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md) for the frozen protocol.
-
-## Study design
+## Frozen study design
 
 | Component | Frozen design |
 |---|---|
 | Target | Human EGFR (`CHEMBL203`) |
-| Endpoint | IC50 / pIC50 inhibitory potency |
+| Endpoint | IC50 transformed to pIC50 inhibitory potency |
 | Source records | 17,705 |
 | Curated activity rows | 17,412 |
-| Final unique compounds | 10,056 |
-| Graph representation | Graph19 — 19 classical invariants |
-| Contemporary baselines | RDKit2D — 196; ECFP4 — 2,048 bits |
-| Random validation | 5 fixed seeds |
-| Scaffold validation | 5 Murcko GroupKFold partitions |
-| Reliability | chemical similarity, leverage, conformal intervals |
-| Strengthening analyses | exact collisions, paired effects, RF sampling sensitivity |
+| Final unique compounds | **10,056** |
+| Compact graph representation | Graph19 - 19 classical invariants |
+| Descriptor baseline | RDKit2D - 196 retained descriptors |
+| Fingerprint baseline | ECFP4 - Morgan radius 2, 2,048-bit binary, chirality disabled |
+| Random validation | 5 fixed 80:20 partitions |
+| Scaffold validation | 5 Bemis-Murcko GroupKFold partitions |
+| Principal learner | Random Forest |
+| Second learner sensitivity | ExtraTreesRegressor |
+| Reliability analyses | chemical similarity, leverage, conformal intervals, collision-conditioned held-out error |
 
-## Key results
+## Representation benchmark
 
-| Evidence | Graph19 | RDKit2D | ECFP4 |
-|---|---:|---:|---:|
-| **Feature dimension** | **19** | 196 | 2,048 |
-| **Random-split R²** | 0.392 ± 0.038 | 0.657 ± 0.017 | **0.735 ± 0.014** |
-| **Scaffold R²** | 0.211 ± 0.136 | 0.518 ± 0.100 | **0.615 ± 0.062** |
-| **Random RMSE** | 1.068 | 0.802 | **0.705** |
-| **Scaffold RMSE** | 1.197 | 0.933 | **0.837** |
+| Representation | Features | Random R² mean ± SD | Scaffold R² mean ± SD | Random RMSE | Scaffold RMSE |
+|---|---:|---:|---:|---:|---:|
+| Graph19 | 19 | 0.392 ± 0.038 | 0.211 ± 0.136 | 1.068 | 1.197 |
+| RDKit2D | 196 | 0.657 ± 0.017 | 0.518 ± 0.100 | 0.802 | 0.933 |
+| ECFP4 | 2,048 | **0.735 ± 0.014** | **0.615 ± 0.062** | **0.705** | **0.837** |
 
-Matched ECFP4 gains over Graph19 were **+0.343 R²** (95% CI 0.309–0.377) under random splitting and **+0.404 R²** (95% CI 0.310–0.498) under scaffold splitting, with the same direction in all five matched partitions.
+Graph19 therefore retains measurable EGFR pIC50 predictive signal at extreme dimensional compression, but richer chemical representations recover substantially more signal, especially under scaffold shift.
 
-The interpretation is intentionally asymmetric: **Graph19 retains measurable predictive signal with extreme dimensional compression, but contemporary representations recover substantially more predictive and extrapolative information.**
+## V3.3 mechanism-resolved representation degeneracy
 
-## Representation degeneracy
+At the operational **8-decimal Graph19 encoding**:
 
-Exact Graph19 descriptor vectors were grouped across the frozen cohort.
+- **7,382** unique Graph19 vectors;
+- **1,507** collision groups;
+- **4,181 molecules (41.58%)** in collision groups;
+- maximum within-class pIC50 range **5.17185**.
 
-- **10,056 molecules → 7,382 unique Graph19 vectors**.
-- **1,507 exact collision groups** contain **4,181 molecules (41.6%)**.
-- **1,285 groups (85.3%)** contain more than one molecular formula.
-- **117 groups** span more than **2 pIC50 units**.
-- **108 molecular pairs** have identical Graph19 vectors, ECFP4 Tanimoto < 0.5, and |ΔpIC50| > 2.
+The new V3.3 graph-isomorphism/canonical-topology audit localizes where those collisions arise. Every 8-decimal collision group contained only **one hydrogen-suppressed unlabeled simple-graph topology**. No observed collision group required two genuinely different unlabeled simple graphs to share the same Graph19 vector.
 
-These are **descriptor-vector collisions**, not claims that the underlying molecular graphs are isomorphic. They provide a direct, chemically interpretable explanation for part of the performance ceiling imposed by the compressed Graph19 encoding.
+Primary earliest information-loss mechanisms were:
 
-Detailed frozen statistics are in [`docs/FROZEN_RESULTS.md`](docs/FROZEN_RESULTS.md).
-
-## Robustness to Random Forest feature sampling
-
-The principal benchmark uses the frozen matched RF configuration. A reviewer-oriented sensitivity analysis replaced dimensionality-dependent `sqrt(p)` feature sampling with a common **50% feature fraction** across all representations.
-
-| Representation | Random R² | Scaffold R² |
+| Mechanism | Collision groups | Molecules |
 |---|---:|---:|
-| Graph19 | 0.393 | 0.214 |
-| RDKit2D | 0.670 | 0.530 |
-| ECFP4 | **0.734** | **0.610** |
+| Atom/element-label loss | **1,278** | **3,691** |
+| Bond-order/aromaticity loss | 104 | 222 |
+| Stereo/other full-identity loss | 125 | 268 |
+| Different unlabeled simple topology | **0** | **0** |
 
-The ordering **ECFP4 > RDKit2D > Graph19** persisted, and selected full-feature spot checks preserved the same ordering.
+This supports the interpretation that the dominant empirical degeneracy in this EGFR cohort occurs at the **chemical structure -> hydrogen-suppressed unlabeled simple graph** abstraction step, rather than from observed non-isomorphic unlabeled simple graphs colliding only after the 19-index compression.
 
-## Frozen data lineage and provenance
+## Precision sensitivity
 
-Raw-source lineage is preserved rather than reconstructed from a newer ChEMBL release:
+Rounded equality is treated as an operational encoding, not as mathematical real-number equality.
 
-```text
-17,705 archived EGFR IC50 records
-        ↓
-17,412 curated binding-assay activity rows
-        ↓
-10,056 unique compounds
-(InChIKey grouping; median pIC50)
-```
+| Encoding | Collision groups | Molecules in collisions | Cohort fraction |
+|---|---:|---:|---:|
+| 6 decimals | 1,507 | 4,181 | 41.58% |
+| 8 decimals | 1,507 | 4,181 | 41.58% |
+| 10 decimals | 1,507 | 4,180 | 41.57% |
+| 12 decimals | 1,507 | 4,169 | 41.46% |
+| exact binary64 | 1,408 | 3,719 | 36.98% |
 
-Of the 17,412 curated labels, **17,156** use ChEMBL `pchembl_value`; **256** use a compatible unit-derived fallback. All 19 Graph19 descriptors were independently regenerated and matched the archived descriptor matrix to approximately `5e-8`. The frozen cohort contains **3,579 unique Bemis-Murcko scaffolds**.
+The empirical collision burden is therefore highly stable across 6-12 decimal encodings, while exact binary64 equality is somewhat more discriminating but still leaves a substantial collision burden.
 
-The original ChEMBL release identifier was not retained in the historical archive. This is disclosed rather than guessed. See [`docs/DATA_PROVENANCE.md`](docs/DATA_PROVENANCE.md), [`INPUT_MANIFEST.json`](INPUT_MANIFEST.json), and [`DATA_LICENSE_NOTICE.md`](DATA_LICENSE_NOTICE.md).
+## Whole-vector ECFP4 comparison
 
-## Reproducibility
+This analysis is distinct from within-molecule Morgan hash-folding collisions. It asks whether **different molecules share the same complete 2,048-bit vector**.
 
-This repository is designed as an **auditable frozen-result package**, not a loose code dump.
+- **9,661** unique ECFP4 vectors;
+- **307** identical full-vector collision groups;
+- **702 molecules (6.98%)** in those groups;
+- **20 groups** span more than 2 pIC50 units;
+- maximum pIC50 range **3.0**.
 
-It contains or maps to:
+ECFP4 is therefore not described as collision-free; it is simply much more discriminating than Graph19 on this cohort.
 
-1. data-lineage and provenance records;
-2. deterministic descriptor/fingerprint generation;
-3. fixed random and scaffold validation logic;
-4. historical-assurance and matched representation benchmarks;
-5. Y-randomization, ablation and permutation analyses;
-6. chemical-space, leverage and uncertainty diagnostics;
-7. exact Graph19 representation-degeneracy analysis;
-8. paired effect sizes and RF-sampling sensitivity;
-9. machine-readable frozen result tables;
-10. repository QA and environment specifications.
+## Collision-conditioned held-out prediction error
 
-### Environment
+Graph19 ambiguity is not uniformly associated with larger prediction error. The important distinction is whether the held-out encoded class is represented in training and whether that class contains strong response disagreement.
+
+Under scaffold evaluation, Graph19 MAE was approximately:
+
+- **0.636** when the matching Graph19 vector was seen in training;
+- **1.018** when the collision-class vector was not seen in training;
+- **1.186** for high-response-disagreement collision classes.
+
+For the high-disagreement scaffold subgroup, RDKit2D and ECFP4 reduced MAE to approximately **0.938** and **0.863**, respectively. These are associative diagnostics, not causal claims.
+
+## Second-learner representation sensitivity
+
+ExtraTreesRegressor preserved the same representation ordering:
+
+| Split | Graph19 R² | RDKit2D R² | ECFP4 R² |
+|---|---:|---:|---:|
+| Random | 0.366 ± 0.040 | 0.692 ± 0.020 | **0.729 ± 0.018** |
+| Scaffold | 0.163 ± 0.165 | 0.556 ± 0.099 | **0.602 ± 0.070** |
+
+Thus the qualitative ordering **ECFP4 > RDKit2D > Graph19** is not specific to the Random Forest benchmark.
+
+## Data and code availability
+
+The public repository contains the reproducibility code, V3.3 strengthening code, environment locks, data provenance, checksums, frozen result summaries, and the final modeled EGFR cohort as a compressed CSV archive under `data/egfr_qspr_final_v33.zip`.
+
+ChEMBL-derived data retain their source licensing terms and attribution requirements. Original project code is released under the MIT License. The missing historical ChEMBL release identifier is disclosed rather than inferred.
+
+## Reproducing the study
 
 ```bash
 conda env create -f environment.yml
 conda activate egfr-graph-qsar
 ```
 
-or install the pip dependencies from [`requirements.txt`](requirements.txt).
+For the original V3 pipeline, use `RUN_EGFR_QSAR_REPRODUCIBILITY.cmd`. The V3.3 incremental strengthening code and its pinned environment are under `v33/`.
 
-### Lightweight repository QA
-
-The GitHub Actions workflow in `.github/workflows/qa.yml` checks the public package. Full scientific retraining is intentionally not executed on every push.
-
-See [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) for the exact reproducibility boundary.
+The V3.3 code reuses the frozen cohort and validation design rather than substituting a newer ChEMBL release.
 
 ## Result-to-source map
 
-| Manuscript evidence | Machine-readable repository source |
+| Evidence | Repository source |
 |---|---|
-| Representation benchmark | [`results/frozen/representation_benchmark_summary.csv`](results/frozen/representation_benchmark_summary.csv) |
-| Descriptor-family ablation | [`results/frozen/descriptor_family_ablation_summary.csv`](results/frozen/descriptor_family_ablation_summary.csv) |
-| Chemical-space shift | [`results/frozen/chemical_space_similarity_bins.csv`](results/frozen/chemical_space_similarity_bins.csv) |
-| Conformal uncertainty | [`results/frozen/conformal_metrics.csv`](results/frozen/conformal_metrics.csv) |
-| Paired representation effects | [`results/v31/paired_representation_effect_sizes.csv`](results/v31/paired_representation_effect_sizes.csv) |
-| Graph19 ambiguity summary | [`results/v31/graph19_ambiguity_summary.json`](results/v31/graph19_ambiguity_summary.json) |
-| Representative collision pairs | [`results/v31/representative_collision_pairs.csv`](results/v31/representative_collision_pairs.csv) |
-| RF feature-sampling sensitivity | [`results/v31/rf_sensitivity_summary.csv`](results/v31/rf_sensitivity_summary.csv) |
-
-## Repository structure
-
-```text
-.
-├── .github/workflows/            # lightweight QA
-├── data/                         # source notes / optional frozen data payload
-├── docs/
-│   ├── assets/                   # README visuals
-│   ├── DATA_PROVENANCE.md
-│   ├── EXPERIMENT_PROTOCOL.md
-│   ├── FROZEN_RESULTS.md
-│   ├── LICENSE_AND_USAGE.md
-│   └── REPRODUCIBILITY.md
-├── results/
-│   ├── frozen/                   # V3 submission-aligned summaries
-│   └── v31/                      # representation-degeneracy + robustness outputs
-├── scripts/                      # reproducibility pipeline
-├── v31/                          # V3.1 strengthening workflow
-├── CITATION.cff
-├── environment.yml
-├── requirements.txt
-└── README.md
-```
+| Random/scaffold representation benchmark | `results/frozen/representation_benchmark_summary.csv` |
+| Descriptor-family ablation | `results/frozen/descriptor_family_ablation_summary.csv` |
+| Chemical-space shift | `results/frozen/chemical_space_similarity_bins.csv` |
+| Conformal uncertainty | `results/frozen/conformal_metrics.csv` |
+| V3.1 paired representation effects | `results/v31/paired_representation_effect_sizes.csv` |
+| V3.3 mechanism decomposition | `results/v33/action_a_mechanism_summary.csv` |
+| V3.3 precision sensitivity | `results/v33/action_b_precision_sensitivity_summary.csv` |
+| V3.3 Graph19 vs ECFP4 collision comparison | `results/v33/action_c_graph19_vs_ecfp4_collision_comparison.csv` |
+| V3.3 collision-conditioned error | `results/v33/action_d_summary_across_partitions.csv` |
+| V3.3 ExtraTrees sensitivity | `results/v33/action_e_extratrees_summary.csv` |
+| Complete V3.3 scientific freeze | `results/v33/V33_SCIENCE_FREEZE_SUMMARY.json` |
 
 ## Scientific scope and limitations
 
-This is an **EGFR-specific representation study**, not evidence that Graph19, RDKit2D, or ECFP4 universally dominates for all targets or learners.
-
-Important boundaries include:
-
-- pIC50 is an inhibitory-potency endpoint, not a thermodynamic binding-affinity constant;
-- Graph19 intentionally omits atom labels, bond orders, stereochemical detail, 3D geometry, protein state and assay context;
-- descriptor-vector collisions do not imply molecular-graph isomorphism;
-- the representation comparison is model-mediated rather than an information-theoretic proof;
-- scaffold conformal coverage is an empirical distribution-shift stress test, not a formal exchangeability-guaranteed coverage result;
-- the historical ChEMBL release identifier was not preserved;
-- conclusions are target- and protocol-specific.
-
-## Release status
-
-**Current status: manuscript submission repository.**  
-GitHub is the public reproducibility source for initial journal submission. An immutable archival DOI can be added later if required by the editor, during revision, or after acceptance; it is not treated here as a prerequisite for the initial submission.
+- pIC50 is an inhibitory-potency endpoint, not a thermodynamic binding-affinity constant.
+- Graph19 intentionally omits atom labels, bond orders, stereochemistry, 3D geometry, protein state and assay context.
+- Eight-decimal Graph19 equality is an operational encoding; exact binary64 results are reported separately.
+- The observed absence of non-isomorphic unlabeled-topology collisions is cohort-specific and is not a theorem that the 19-index vector is globally injective.
+- ECFP4 is not collision-free.
+- Representation comparisons are learner- and protocol-mediated, not information-theoretic proofs.
+- Scaffold conformal coverage is an empirical distribution-shift stress test, not an exchangeability-guaranteed coverage result.
+- The historical ChEMBL release identifier was not preserved.
 
 ## Authors
 
-- **Sunilgar L. Gusai** — corresponding author, Marwadi University  
-  ORCID: [0009-0004-0739-4812](https://orcid.org/0009-0004-0739-4812)
-- **Manoharsinh R. Jadeja** — Marwadi University
+- **Sunilgar L. Gusai** - corresponding author, Marwadi University  
+  ORCID: https://orcid.org/0009-0004-0739-4812
+- **Manoharsinh R. Jadeja** - Marwadi University
 
 ## Citation
 
-Citation metadata are provided in [`CITATION.cff`](CITATION.cff). Publication DOI/journal metadata will be added when available.
-
-## License and usage
-
-Original project code is released under the **MIT License**. ChEMBL-derived material remains subject to its source terms and attribution requirements. See [`docs/LICENSE_AND_USAGE.md`](docs/LICENSE_AND_USAGE.md) and [`DATA_LICENSE_NOTICE.md`](DATA_LICENSE_NOTICE.md).
+Citation metadata are provided in `CITATION.cff`. Publication DOI/journal metadata will be added when available.
