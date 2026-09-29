@@ -1,0 +1,8 @@
+{
+  "learner": "ExtraTreesRegressor",
+  "max_features": 0.5,
+  "min_samples_leaf": 1,
+  "n_estimators": 250,
+  "partitions": "exact frozen V3 random/scaffold assignments",
+  "tuning": "none"
+}
