@@ -1,0 +1,3 @@
+# Frozen split assignments
+
+The V3.3 submission uses the exact V3 fixed validation assignments: five 80:20 random partitions with seeds 42, 101, 202, 303 and 404, plus five fixed Bemis-Murcko scaffold folds. The machine-readable split files are distributed with the submission supplementary archive and are cryptographically identified in the V3.3 source bundle. No new favorable partitions were introduced for V3.3.
