@@ -1,0 +1,4 @@
+mechanism,groups,groups_pct_of_collision_groups,molecules,molecules_pct_of_collision_molecules,groups_pIC50_range_gt_1,groups_pIC50_range_gt_2,groups_pIC50_range_gt_3,median_group_pIC50_range,max_pIC50_range
+atom_element_label_loss,1278,84.80424684804247,3691,88.28031571394403,347,108,33,0.5499999999999994,5.17184875
+stereo_or_other_full_identity_loss,125,8.29462508294625,268,6.409949772781631,20,5,0,0.39000000000000057,2.9961000030000005
+bond_order_aromaticity_loss,104,6.901128069011281,222,5.3097345132743365,22,4,0,0.48500000000000076,2.9299999999999997
