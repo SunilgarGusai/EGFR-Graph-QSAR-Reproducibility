@@ -1,0 +1,32 @@
+{
+  "build": "EGFR-QSAR-V3.3-CIS-strengthening-2026-09-29",
+  "source_v3_return_sha256": "f890dbf601289e576276dffb042feb650dcb98acc161362295ced90a51cc56c0",
+  "source_v32_master_zip_sha256": "81d87ba47da18b8d497fa09ec2a04b7e015533152b7967809269b5c2e6df069c",
+  "source_phase02_descriptor_impl_sha256": "f1724ea6e76b44ceb16437e26e29695528ade077c0893510699b3f014f6e4ac4",
+  "expected_environment": {
+    "python_major_minor": "3.11",
+    "rdkit": "2026.03.6",
+    "scikit_learn": "1.8.0",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "scipy": "1.17.1"
+  },
+  "descriptor_tolerance": 1e-6,
+  "descriptor_chunk_size": 250,
+  "max_workers": 10,
+  "reserve_cpu_cores": 2,
+  "graph19_primary_precision_decimals": 8,
+  "precision_decimals": [6, 8, 10, 12],
+  "activity_range_thresholds": [1.0, 2.0, 3.0],
+  "bootstrap_replicates": 500,
+  "smoke_bootstrap_replicates": 50,
+  "smoke_rows": 360,
+  "run_optional_action_e": true,
+  "extra_trees": {
+    "n_estimators": 250,
+    "max_features": 0.5,
+    "min_samples_leaf": 1
+  },
+  "extra_trees_smoke_estimators": 25,
+  "random_seeds": [42, 101, 202, 303, 404]
+}
