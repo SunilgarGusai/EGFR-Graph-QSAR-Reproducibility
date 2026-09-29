@@ -1,0 +1,17 @@
+{
+  "authoritative_source": "Frozen V3.2 submission package (verified local/Drive source)",
+  "frozen_v32_master_zip": {
+    "filename": "FINAL_SUBMISSION_PACKAGE_V32_2026-09-28.zip",
+    "sha256": "81d87ba47da18b8d497fa09ec2a04b7e015533152b7967809269b5c2e6df069c",
+    "verified_internal_manifest_files": 300
+  },
+  "embedded_v3_return": {
+    "filename": "inputs/EGFR_QSAR_V3_RETURN_PACKAGE.zip",
+    "sha256": "f890dbf601289e576276dffb042feb650dcb98acc161362295ced90a51cc56c0"
+  },
+  "verified_v32_descriptor_source": {
+    "filename": "vendor_v32/phase02_descriptors.py",
+    "sha256": "f1724ea6e76b44ceb16437e26e29695528ade077c0893510699b3f014f6e4ac4"
+  },
+  "scientific_scope": "Incremental V3.3 Actions A-E only; the frozen V3.2 baseline is immutable and is never overwritten."
+}
