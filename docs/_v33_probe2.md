@@ -1,1 +1,0 @@
-This write probe confirms authenticated repository mutation works. It will be removed during finalization.
