@@ -68,7 +68,7 @@ Thus the qualitative ordering **ECFP4 > RDKit2D > Graph19** is not specific to R
 
 ## Data and code availability
 
-The repository publicly provides the analysis code/reproducibility bundle, pinned environment information, provenance records, checksums and machine-readable V3.3 result summaries. The modeled cohort is a ChEMBL-derived dataset; its exact frozen checksum and source lineage are documented under `data/` and `docs/DATA_PROVENANCE.md`. The Journal of Cheminformatics submission additionally provides the frozen machine-readable 10,056-compound cohort, collision memberships, annotated held-out predictions, benchmark/uncertainty tables and result manifests as Additional file 2, without changing the frozen scientific population.
+The repository publicly provides the analysis code/reproducibility bundle, pinned environment information, provenance records, checksums and machine-readable V3.3 result summaries. The modeled cohort is a ChEMBL-derived dataset; its exact frozen checksum and source lineage are documented under `data/` and `docs/DATA_PROVENANCE.md`. For journal submission, the private supplementary package can additionally include the frozen machine-readable 10,056-compound cohort, collision memberships, annotated held-out predictions, benchmark/uncertainty tables and result manifests without changing the frozen scientific population.
 
 Original project code is released under the MIT License. ChEMBL-derived material remains subject to its source licensing and attribution requirements. The historical ChEMBL release identifier was not preserved and is disclosed rather than guessed.
 
@@ -89,4 +89,10 @@ Original project code is released under the MIT License. ChEMBL-derived material
 3. **Manoharsinh R. Jadeja** - Department of Artificial Intelligence, Machine Learning and Data Science, Marwadi University, Rajkot 360003, Gujarat, India
 4. **Ripal Ranpara** - Faculty of Computer Applications, Marwadi University, Rajkot 360003, Gujarat, India
 
-Citation metadata are supplied in `CITATION.cff`.
+## Citation
+
+Citation metadata are supplied in [`CITATION.cff`](CITATION.cff). Please cite the associated article when final bibliographic metadata become available.
+
+## License and usage
+
+Original project code is released under the [`MIT License`](LICENSE). ChEMBL-derived material retains its upstream licensing and attribution requirements; see the repository provenance documentation for the exact public-data boundary.
