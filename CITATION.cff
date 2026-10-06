@@ -17,8 +17,6 @@ authors:
   - family-names: "Ranpara"
     given-names: "Ripal"
     affiliation: "Faculty of Computer Applications, Marwadi University, Rajkot 360003, Gujarat, India"
-version: "3.3.0-submission"
-date-released: "2026-09-29"
 repository-code: "https://github.com/SunilgarGusai/EGFR-Graph-QSAR-Reproducibility"
 url: "https://github.com/SunilgarGusai/EGFR-Graph-QSAR-Reproducibility"
 license: MIT
@@ -33,3 +31,17 @@ keywords:
   - chemical-space shift
   - ECFP4
   - reproducibility
+preferred-citation:
+  type: article
+  title: "Mechanisms of Representation Degeneracy and Generalization Limits of Classical Molecular Graph Descriptors in EGFR QSAR"
+  authors:
+    - family-names: "Gusai"
+      given-names: "Sunilgar L."
+      orcid: "https://orcid.org/0009-0004-0739-4812"
+    - family-names: "Shah"
+      given-names: "Dharmeshkumar"
+    - family-names: "Jadeja"
+      given-names: "Manoharsinh R."
+    - family-names: "Ranpara"
+      given-names: "Ripal"
+  notes: "Revised manuscript being prepared for journal resubmission. Final bibliographic metadata and DOI will be added after publication."
