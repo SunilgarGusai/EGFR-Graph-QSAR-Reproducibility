@@ -85,8 +85,8 @@ Original project code is released under the MIT License. ChEMBL-derived material
 ## Authors
 
 1. **Sunilgar L. Gusai** - Faculty of Computer Applications, Marwadi University, Rajkot 360003, Gujarat, India; ORCID: https://orcid.org/0009-0004-0739-4812
-2. **Dharmeshkumar Shah** - corresponding author; Information and Library Network (INFLIBNET) Centre, Infocity, Gandhinagar 382007, Gujarat, India; email: dashah@inflibnet.ac.in
-3. **Manoharsinh R. Jadeja** - Department of Artificial Intelligence, Machine Learning and Data Science, Marwadi University, Rajkot 360003, Gujarat, India
+2. **Manoharsinh R. Jadeja** - Department of Artificial Intelligence, Machine Learning and Data Science, Marwadi University, Rajkot 360003, Gujarat, India
+3. **Dharmeshkumar Shah** - corresponding author; Information and Library Network (INFLIBNET) Centre, Infocity, Gandhinagar 382007, Gujarat, India; email: dashah@inflibnet.ac.in
 4. **Ripal Ranpara** - Faculty of Computer Applications, Marwadi University, Rajkot 360003, Gujarat, India
 
 ## Citation
