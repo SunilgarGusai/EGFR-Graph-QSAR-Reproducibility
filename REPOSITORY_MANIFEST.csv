@@ -42,3 +42,5 @@ pipeline,scripts/validate_frozen_package.py,Lightweight public repository valida
 pipeline,scripts/make_publication_figures_v31.py,Regenerate selected figures from frozen public outputs
 pipeline,v31/v31_strengthening.py,Representation degeneracy paired effects and RF sensitivity
 ci,.github/workflows/qa.yml,GitHub Actions repository-integrity check
+ci,.github/workflows/render-repository-banner.yml,Reproducible export of animated repository artwork
+docs,docs/assets/repository-banner.gif,Animated visual cover generated from SVG master
