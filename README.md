@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/repository-banner.svg" alt="EGFR Graph QSAR Reproducibility" width="100%" />
+  <img src="docs/assets/repository-banner.gif" alt="EGFR Graph QSAR Reproducibility" width="100%" />
 </p>
 
 <h1 align="center">EGFR Graph QSAR Reproducibility</h1>
